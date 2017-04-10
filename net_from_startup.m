@@ -26,17 +26,17 @@ testing_wins = input_wins(split+1:end,:);
 
 board_net = feedforwardnet(net_size);
 board_net.inputs{1}.processFcns = {};
-board_net.outputs{net.numLayers}.processFcns = {};
+board_net.outputs{board_net.numLayers}.processFcns = {};
 board_net = train(board_net,training_boards',training_wins');
 
 encoded_board_net = feedforwardnet(net_size);
 encoded_board_net.inputs{1}.processFcns = {};
-encoded_board_net.outputs{net.numLayers}.processFcns = {};
+encoded_board_net.outputs{encoded_board_net.numLayers}.processFcns = {};
 encoded_board_net = train(encoded_board_net,training_encoded_boards',training_wins');
 
 connectivity_net = feedforwardnet(net_size);
 connectivity_net.inputs{1}.processFcns = {};
-connectivity_net.outputs{net.numLayers}.processFcns = {};
+connectivity_net.outputs{connectivity_net.numLayers}.processFcns = {};
 connectivity_net = train(connectivity_net,training_connectivity',training_wins');
 
 board_net_win_rate = assess_net(board_net,testing_boards, testing_wins);
