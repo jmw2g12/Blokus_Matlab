@@ -12,8 +12,11 @@ for i = data'
 end
 fprintf('finished wins\n');
 
-input_connectivity = get_connectivity_input_matrix(data);
-fprintf('finished connectivity matrix\n');
+%input_connectivity = get_connectivity_input_matrix(data);
+%fprintf('finished connectivity matrix\n');
 
 input_encoded_boards = one_of_n_encoding(input_boards);
 fprintf('finished encoded boards\n');
+
+input_neg_opp_boards = adjust_board_representation(input_boards);
+fprintf('finished negative opponent boards\n');

@@ -1,6 +1,6 @@
 function [ data ] = load_in_training_data( data_cutoff )
     data = [];
-    file_name = '../Data Management/random_training/';
+    file_name = 'Data Management/lyceum_training/';
     files = dir(file_name);
     num_of_fields = 9; %choose value that gets most input files
     count = 1;
@@ -19,7 +19,10 @@ function [ data ] = load_in_training_data( data_cutoff )
             try
                 if (length(fieldnames(loadjson(strcat(file_name,file.name)))) == num_of_fields)
                     json = loadjson(strcat(file_name,file.name));
-                    json = filter_data (json, @(x) x.player == 1 && x.num_moves(x.player) >= 8 && x.num_moves(x.player) <= 21);
+                    json = filter_data (json, @(x) x.num_moves(x.player) >= 8 && x.num_moves(x.player) <= 21);
+                    if (json.player == 2)
+                        json = invert_player(json);
+                    end
                     data = [data; json];
                 else
                     continue;

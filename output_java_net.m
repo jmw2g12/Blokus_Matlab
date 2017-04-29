@@ -4,7 +4,7 @@ function net = output_java_net( sz, wts, bs )
     line = 'import java.util.ArrayList;';
     net = strcat(net,line,'\n');
     
-    line = 'public class MatlabNeuralNet {';
+    line = 'public class ValueNet {';
     net = strcat(net,line,'\n');
     
     line = 'ArrayList<Matrix> weights = new ArrayList<Matrix>();';
@@ -19,7 +19,7 @@ function net = output_java_net( sz, wts, bs )
     line = 'Matrix bias_layer;';
     net = strcat(net,'\t',line,'\n');
     
-    line = 'public MatlabNeuralNet(){';
+    line = 'public ValueNet(){';
     net = strcat(net,'\t',line,'\n');
     
     for i = 1:size(sz,1)-1
@@ -27,7 +27,11 @@ function net = output_java_net( sz, wts, bs )
         for j = 1:sz(i)
             line = strcat(line,'{');
             for k = 1:sz(i+1)
-                line = strcat(line,num2str(wts{i}(k,j)),',');
+                if (wts{i}(k,j) == 0)
+                    line = strcat(line,num2str(wts{i}(k,j)),'.0,');
+                else
+                    line = strcat(line,num2str(wts{i}(k,j)),',');
+                end
             end
             line = strcat(line(1:end-1),'},');
         end
@@ -40,7 +44,11 @@ function net = output_java_net( sz, wts, bs )
     for i = 1:size(sz,1)-1
         line = 'bias_layer = new Matrix(new Double[]{';
         for j = 1:sz(i+1)
-            line = strcat(line,num2str(bs{i}(j)),',');
+            if (bs{i}(j) == 0)
+                line = strcat(line,num2str(bs{i}(j)),'.0,');
+            else
+                line = strcat(line,num2str(bs{i}(j)),',');
+            end
         end
         net = strcat(net,'\t\t',line(1:end-1),'});','\n');
 
