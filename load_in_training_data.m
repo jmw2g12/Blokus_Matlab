@@ -1,11 +1,15 @@
 function [ data ] = load_in_training_data( data_cutoff )
+
+    % This function loads the training data.
+    % Data_cutoff specifies the maximum amount of data to load in, which is
+    % useful for testing without waiting hours.
+
     data = [];
-    file_name = 'Data Management/lyceum_training/';
+    file_name = '../Data Processing/training_data/';
     files = dir(file_name);
-    num_of_fields = 9; %choose value that gets most input files
+    num_of_fields = 9;
     count = 1;
     for file = files'
-        %disp(strcat('training/',file.name));
         data_size = size(data,1);
         if (mod(count,50) == 0)
             fprintf('%d used out of %d found\n',data_size,count);
@@ -15,7 +19,6 @@ function [ data ] = load_in_training_data( data_cutoff )
         end
         count = count + 1;
         if (~strcmp(file.name(1),'.'))
-            %disp(length(fieldnames(loadjson(strcat('training/',file.name)))));
             try
                 if (length(fieldnames(loadjson(strcat(file_name,file.name)))) == num_of_fields)
                     json = loadjson(strcat(file_name,file.name));
@@ -26,9 +29,6 @@ function [ data ] = load_in_training_data( data_cutoff )
                     data = [data; json];
                 else
                     continue;
-                    fprintf('wrong size file : %s\n',strcat(file_name,file.name));
-                    temp = loadjson(strcat(file_name,file.name));
-                    fprintf('moves = %d, %d\n',temp.num_moves(1), temp.num_moves(2));
                 end
             catch
             end

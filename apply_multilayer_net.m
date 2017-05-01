@@ -1,4 +1,6 @@
-function [ result, weights, bias ] = apply_multilayer_net2( net, input )
+function [ result, weights, bias ] = apply_multilayer_net( net, input )
+    
+    % Testing function for the neural network application formula.
     
     % need to use :
     % net.inputs{1}.processFcns = {};

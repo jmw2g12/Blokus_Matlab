@@ -1,4 +1,4 @@
-function [ rep ] = adjust_board_representation(boards)
+function [ rep ] = twos_to_minus_ones(boards)
     rep = [];
     for i = 1:size(boards,1)
         line = [];

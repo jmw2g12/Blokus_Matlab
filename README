@@ -1,0 +1,13 @@
+Matlab
+------
+
+This directory includes various functions used when generating the neural
+network and its Java counterpart.
+
+Run the script called net_from_startup once there exists training data
+in the Data Processing directory. See the README there for more details.
+
+Once an adequate network is created call get_net_weights_biases passing the net
+as an argument, then call output_java_net using the result. This will save it
+into a file, you can add it to the Java Application folder to be used in either
+the PolicyNetPlayer or the MCTSPlayer with policy network simulation weighting.

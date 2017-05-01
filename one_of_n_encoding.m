@@ -1,7 +1,9 @@
 function [ encoding ] = one_of_n_encoding(boards)
+
+    % From an two dimensional array of flattened boards (using twos to
+    % represent opponent blocks) this function creates a one-of-N encoding
+
     encoding = [];
-    fprintf('There are %d boards\n',size(boards,1));
-    fprintf('Which are of size %d\n\n',size(boards,2));
     for i = 1:size(boards,1)
         line = [];
         for j = 1:size(boards,2)

@@ -1,6 +1,10 @@
 function [sz, wts, bs] = get_net_weights_biases( net, save )
+    
+    % Obtains the values that are required for neural network application
+    % Saving the values is not necessary for the current Java network
+    % implementation. 
+
     layers_size = net.numLayers-1;
-    %disp(layers_size);
 
     wb = getwb(net);
     [b,IW,LW] = separatewb(net,wb);

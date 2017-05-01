@@ -1,4 +1,9 @@
 function [ new_strct ] = invert_player( strct )
+
+    % Alters the board perspective so it appears that player two played
+    % first and player one played second.
+    % This is used to create more data with which to train.
+
     new_strct = strct;
     for i = 1:size(new_strct.board,1)
         for j = 1:size(new_strct.board,1)
